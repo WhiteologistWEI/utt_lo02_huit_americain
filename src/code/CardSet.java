@@ -15,6 +15,10 @@ public class CardSet {
 		cardSet = new ArrayList<>();
 	} 
 	
+	public List<Card> getCardList() {
+		return cardSet;
+	}
+	
 	public int getCardAmount() {
 		return cardSet.size();
 	}
@@ -29,7 +33,7 @@ public class CardSet {
 	}
 	
 	public Card getCard(int cardIndex) {
-		return cardSet.get(cardIndex - 1);
+		return cardSet.get(cardIndex);
 	}
 
 	public Card deal() {
@@ -38,16 +42,12 @@ public class CardSet {
 		return dealtCard;
 	}
 	
-	public CardSet createPack() {
-		for (int color = 0; color < 4; color++) {
-			
+	public void createPack() {
+		for (int color = 0; color < 4; color++) {			
 			for (int value = 0; value < 13; value++) {
 				this.addCard(new Card(color, value));								
-			}
-			
-		}
-		
-		return this;
+			}			
+		}		
 	}
 	
 	public void shuffle() {
@@ -65,7 +65,15 @@ public class CardSet {
 	}
 	
 	public static void main(String[] args) {
-		CardSet generator = new CardSet();
+		/*
+		CardSet pack = new CardSet();
+		pack.createPack();
+		Card c = pack.getCard(0);
+		pack.remove(c);
+		System.out.println(c);
+		pack.printAllCards();
+		*/
+				
 	}
 
 }

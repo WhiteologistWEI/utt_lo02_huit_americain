@@ -11,13 +11,11 @@ public class Controller {
 	private Scanner sc;
 	
 	public Controller() {
-		gManager = new GameManager();
-		pManager = new PlayerManager();
-		cSet = new CardSet();
 		sc = new Scanner(System.in);
 	}
 	
 	public void addPlayers() {
+		pManager = new PlayerManager();
 		/*´´½¨Íæ¼Ò*/
 		System.out.println("Entry your name:");
 		String playerName = sc.nextLine();
@@ -67,6 +65,7 @@ public class Controller {
 	}
 	
 	public void prepareCards() {
+		cSet = new CardSet();
 		/* create 52 cards */
 		cSet.createPack();
 		cSet.shuffle();
@@ -92,13 +91,16 @@ public class Controller {
 	}
 	
 	public void startGame() {
-		
+		gManager = new GameManager(pManager, cSet);
+		System.out.println("===========Game start============");
+		gManager.runGame();
 	}
 	
 	public static void main(String[] args) {
 		Controller game = new Controller();
 		game.addPlayers();
 		game.prepareCards();
+		game.startGame();
 
 	}
 

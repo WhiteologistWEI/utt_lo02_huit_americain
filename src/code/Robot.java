@@ -8,12 +8,13 @@ public class Robot implements Player {
 	private int number;
 	private String name;
 	private CardSet cardSet;
-	private Intelligence level;
+	private Intelligence robLevel;
 	
 	public Robot(String playerName, Intelligence level) {
 		name = playerName;
-		this.level = level;
+		this.robLevel = level;
 		cardSet = new CardSet();
+		robLevel.setCardSet(cardSet);
 	}
 	
 	@Override
@@ -32,8 +33,9 @@ public class Robot implements Player {
 	}
 	
 	@Override
-	public Card play(Card ref) {
-		return null;
+	public Card play(Card ref) {		
+		printCard();
+		return robLevel.playCard(ref);
 	}
 
 	@Override
@@ -52,9 +54,20 @@ public class Robot implements Player {
     	StringBuffer sb = new StringBuffer();
     	sb.append("==========Player information===========\n");
     	sb.append("Player name: " + name + "\n" + "Player number: " + number + "\n");
-    	sb.append(level);
+    	sb.append(robLevel);
     	sb.append("Card Amount: " + cardSet.getCardAmount() + "\n");
     	return sb.toString();
     }
+
+	@Override
+	public void addCard(Card card, int place) {
+		// TODO 自动生成的方法存根
+		
+	}
+
+	@Override
+	public int getCardAmount() {
+		return cardSet.getCardAmount();
+	}
 
 }

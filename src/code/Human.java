@@ -33,22 +33,30 @@ public class Human implements Player {
 	@Override
 	public Card play(Card ref) {//出牌
 		
+		/*
 		if (ref != null) {
 			System.out.println("Last played card is:" + ref);
 		} else {
 			System.out.println("Play any card.");
 		}
+		*/
 
 		this.printCard();
 		System.out.println("Choose a card");
-		int choice = cardScanner.nextInt();//可加抛出异常完善
-		Card chosenCard = cardSet.getCard(choice);
-		return chosenCard;
+		int choice = cardScanner.nextInt() - 1;//可加抛出异常完善
+		
+		if (choice >= cardSet.getCardAmount()) {
+			return null;
+		} else {
+			Card chosenCard = cardSet.getCard(choice);
+			cardSet.remove(chosenCard);
+			return chosenCard;			
+		}
 	}
 
 	@Override
 	public void draw(Card card) {//抽牌
-		cardSet.addCard(card);
+		cardSet.getCardList().add(card);
 	}
 
 	@Override
@@ -56,6 +64,16 @@ public class Human implements Player {
 		System.out.println("Your cards:");
 		cardSet.printAllCards();
 		System.out.println("====End====");
+	}
+
+	@Override
+	public void addCard(Card card, int place) {
+		cardSet.getCardList().add(place, card);
+	}
+
+	@Override
+	public int getCardAmount() {
+		return cardSet.getCardAmount();
 	}
 	
 	public String toString() {
@@ -70,6 +88,5 @@ public class Human implements Player {
 		// TODO 自动生成的方法存根
 
 	}
-
 
 }
