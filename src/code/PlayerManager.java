@@ -35,6 +35,13 @@ public class PlayerManager {
 		playerList.add(newPlayer);
 	}
 	
+	public Player getPlayer(int playerNum) {
+		return playerList.get(playerNum);
+	}
+	
+	public int getPlayerAmount() {
+		return playerList.size();
+	}
 	public boolean checkCard(Card playedCard) {
 		if (playedCard == null) {//Ã»ÅÆ¿É³ö
 			Player nowPlayer = playerList.get(nowPlayerIndex);

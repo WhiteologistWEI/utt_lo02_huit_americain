@@ -1,8 +1,11 @@
 package code;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
+
+import org.omg.CORBA.portable.ValueBase;
 
 public class CardSet {
 
@@ -30,20 +33,39 @@ public class CardSet {
 	}
 
 	public Card deal() {
-		return cardSet.get(0);
+		Card dealtCard = cardSet.get(0);
+		cardSet.remove(dealtCard);
+		return dealtCard;
+	}
+	
+	public CardSet createPack() {
+		for (int color = 0; color < 4; color++) {
+			
+			for (int value = 0; value < 13; value++) {
+				this.addCard(new Card(color, value));								
+			}
+			
+		}
+		
+		return this;
+	}
+	
+	public void shuffle() {
+		Collections.shuffle(cardSet);
 	}
 	
 	public void printAllCards() {
 		Iterator<Card> itCard = cardSet.iterator();
+		int i = 1;
 		while (itCard.hasNext()) {
-			Card card = itCard.next();
-			System.out.println(card);			
-		}
+			Card card = (Card) itCard.next();
+			System.out.println(i + ". " + card);
+			i++;
+		}	
 	}
 	
 	public static void main(String[] args) {
-		// TODO 自动生成的方法存根
-
+		CardSet generator = new CardSet();
 	}
 
 }

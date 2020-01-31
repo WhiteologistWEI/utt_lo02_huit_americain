@@ -38,14 +38,14 @@ public class Robot implements Player {
 
 	@Override
 	public void draw(Card card) {
-		// TODO 自动生成的方法存根
-
+		cardSet.addCard(card);
 	}
 
 	@Override
 	public void printCard() {
-		// TODO 自动生成的方法存根
-
+		System.out.println("Robot cards:");
+		cardSet.printAllCards();
+		System.out.println("====End====");
 	}
 	
 	public String toString() {

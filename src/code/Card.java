@@ -10,7 +10,7 @@ public class Card {
     
     public Card(int c, int v) {
     	this.couleur = c;
-    	this.valeur = c;
+    	this.valeur = v;
     }
 
 	public void setCouleur(int couleur) {
