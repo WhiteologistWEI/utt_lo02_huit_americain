@@ -9,6 +9,7 @@ public class Controller {
 	private PlayerManager pManager;
 	private CardSet cSet;
 	private Variation gameVar;
+	private ResultManager rManager;
 	private Scanner sc;
 	
 	public Controller() {
@@ -18,7 +19,7 @@ public class Controller {
 	public void addPlayers() {
 		pManager = new PlayerManager();
 		/*创建玩家*/
-		System.out.println("Entry your name:");
+		System.out.println("# Entry your name: #");
 		String playerName = sc.nextLine();
 		
 		if (playerName.isEmpty())
@@ -29,11 +30,11 @@ public class Controller {
 		pManager.addPlayers(hPlayer);
 		
 		/*创建机器人*/
-		System.out.println("Entry robot amount(between 1 and 3):");
+		System.out.println("# Entry robot amount(between 1 and 3): #");
 		int robAmount = sc.nextInt();//抛出异常 throws exception
 		for (int i = 1; i < robAmount + 1; i++) {
 			String robName = "Player" + i + "";
-			System.out.println("Entry robot " + "<" + robName + ">" + " level: ");
+			System.out.println("# Entry robot " + "<" + robName + ">" + " level: #");
 			System.out.println("1.Simple \n2.Normal \n3.Difficult");
 			int robLevel = sc.nextInt();//抛出异常 throws exception
 			
@@ -93,7 +94,7 @@ public class Controller {
 	
 	public void setVariation() {
 		gManager = new GameManager(pManager, cSet);
-		System.out.println("# Choose a variation:"
+		System.out.println("# Choose a variation: #"
 				+ "\n1.Basic version\n2.carte et maou\n3.monclar");
 		int variationVal = sc.nextInt();//抛出异常 throw exception
 		
@@ -119,12 +120,20 @@ public class Controller {
 		gManager.runGame(gameVar);
 	}
 	
+	public void printResult() {
+		rManager = new ResultManager(pManager);
+		System.out.println("======RANK======");
+		System.out.println("Rank|Name|Point");
+		rManager.printRank();
+	}
+	
 	public static void main(String[] args) {
 		Controller game = new Controller();
 		game.addPlayers();
 		game.prepareCards();
 		game.setVariation();
 		game.startGame();
+		game.printResult();
 
 	}
 

@@ -19,7 +19,7 @@ public class ChangeColor implements CardFunction {
 		Player nowPlayer = gManager.getNowPlayer();
 		
 		if (nowPlayer instanceof Human) {
-			System.out.println("=======You can change the color of the reference card======");
+			System.out.println("# You can change the color of the reference card #");
 			System.out.println("1.Pic\n2.Coeur\n3.Trefle\n4.Carreau");
 			int newColor = sc.nextInt() - 1;//Å×³öÒì³£ throw exception
 			gManager.setColor(newColor);

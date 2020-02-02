@@ -9,5 +9,6 @@ public interface Player {
 	abstract void draw(Card card);
 	abstract void addCard(Card card, int place);
 	abstract int getCardAmount();
+	abstract CardSet getAllCards();
 	abstract void printCard();
 }

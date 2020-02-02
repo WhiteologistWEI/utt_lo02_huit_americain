@@ -70,4 +70,9 @@ public class Robot implements Player {
 		return cardSet.getCardAmount();
 	}
 
+	@Override
+	public CardSet getAllCards() {
+		return cardSet;
+	}
+
 }

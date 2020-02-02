@@ -89,4 +89,9 @@ public class Human implements Player {
 
 	}
 
+	@Override
+	public CardSet getAllCards() {
+		return cardSet;
+	}
+
 }

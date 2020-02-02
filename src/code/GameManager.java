@@ -1,9 +1,8 @@
 package code;
 
-import java.util.Hashtable;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
-import java.util.logging.Logger;
 
 public class GameManager {
 
@@ -12,6 +11,7 @@ public class GameManager {
 	private int turn = 1;
 	private int playerAmount;
 	private Card reference;
+	private Player winner;
 	private PlayerManager playerList;
 	private CardSet packCard;
 	private Variation gameVar;
@@ -40,9 +40,12 @@ public class GameManager {
 		return reference;
 	}
 	
+	public Player getWinner() {
+		return winner;
+	}
+	
 	public boolean checkCard(Card playedCard, int playerNum) {
 		if (playedCard == null) {//抽牌
-			System.out.println("######L30");
 			Player nowPlayer = playerList.getPlayer(playerNum);
 			Card newCard = packCard.deal();//公共牌第一张牌
 			nowPlayer.draw(newCard);//拿一张新牌
@@ -51,10 +54,8 @@ public class GameManager {
 			return true;
 		} else {//出牌
 			if (reference == null) {
-				System.out.println("#######L33");
 				return true;
 			} else {					
-				System.out.println("########L42");
 				boolean condition1 = (playedCard.getCouleur() == reference.getCouleur());
 				boolean condition2 = (playedCard.getValeur() == reference.getValeur());
 				boolean condition3 = (playedCard.getValeur() == 7);
@@ -70,7 +71,7 @@ public class GameManager {
 	
 	public void runGame(Variation var) {
 		gameVar = var;
-		Player winner = new Human("exemple");
+		//Player winner = new Human("exemple");
 		
 		do {
 			Player nowPlayer = playerList.getPlayer(nowPlayerIndex);
@@ -117,8 +118,8 @@ public class GameManager {
 			}
 			
 		} while (gameEnd == false);
-		
-		System.out.println("Winner is: \n" + winner);
+				
+		//System.out.println("Winner is: \n" + winner);
 	}
 		
 	public static void main(String[] args) {

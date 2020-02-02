@@ -39,6 +39,10 @@ public class PlayerManager {
 	public int getPlayerAmount() {
 		return playerList.size();
 	}
+	
+	public List<Player> getAllPlayers() {
+		return playerList;
+	}
 
 	/*debug*/
 	public void printAllPlayers() {
