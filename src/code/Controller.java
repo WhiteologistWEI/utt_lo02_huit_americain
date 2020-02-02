@@ -8,6 +8,7 @@ public class Controller {
 	private GameManager gManager;
 	private PlayerManager pManager;
 	private CardSet cSet;
+	private Variation gameVar;
 	private Scanner sc;
 	
 	public Controller() {
@@ -90,16 +91,39 @@ public class Controller {
 		System.out.println("rest cards: " + amount);*/
 	}
 	
-	public void startGame() {
+	public void setVariation() {
 		gManager = new GameManager(pManager, cSet);
+		System.out.println("# Choose a variation:"
+				+ "\n1.Basic version\n2.carte et maou\n3.monclar");
+		int variationVal = sc.nextInt();//Å×³öÒì³£ throw exception
+		
+		switch (variationVal) {
+		case 1:
+			gameVar = new BasicVariation(gManager);
+			break;
+			
+		case 2:
+			gameVar = new CarteEtMaou();
+			
+		case 3:
+			gameVar = new Monclar();
+
+		default:
+			System.out.println("No such choice!");
+			break;
+		}
+	}
+	
+	public void startGame() {
 		System.out.println("===========Game start============");
-		gManager.runGame();
+		gManager.runGame(gameVar);
 	}
 	
 	public static void main(String[] args) {
 		Controller game = new Controller();
 		game.addPlayers();
 		game.prepareCards();
+		game.setVariation();
 		game.startGame();
 
 	}

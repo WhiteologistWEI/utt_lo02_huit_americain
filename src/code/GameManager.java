@@ -1,5 +1,7 @@
 package code;
 
+import java.util.Hashtable;
+import java.util.Map;
 import java.util.Scanner;
 import java.util.logging.Logger;
 
@@ -12,6 +14,7 @@ public class GameManager {
 	private Card reference;
 	private PlayerManager playerList;
 	private CardSet packCard;
+	private Variation gameVar;
 	private Scanner sc;
 	
 	public GameManager(PlayerManager pm, CardSet cs) {
@@ -65,7 +68,8 @@ public class GameManager {
 		}		
 	}
 	
-	public void runGame() {
+	public void runGame(Variation var) {
+		gameVar = var;
 		Player winner = new Human("exemple");
 		
 		do {
@@ -91,8 +95,7 @@ public class GameManager {
 					winner = nowPlayer;
 					break;
 				}
-					
-				//function
+				
 				if (playedCard != null) {
 					int color = playedCard.getCouleur();
 					int value = playedCard.getValeur();
@@ -105,6 +108,9 @@ public class GameManager {
 					}
 				}
 				
+				if (playedCard != null)
+					gameVar.runFunction(playedCard);
+				
 				toNext();		
 			} else {
 				nowPlayer.addCard(playedCard, 0);
@@ -112,14 +118,11 @@ public class GameManager {
 			
 		} while (gameEnd == false);
 		
-		System.out.println("Winner is: " + winner);
+		System.out.println("Winner is: \n" + winner);
 	}
 		
 	public static void main(String[] args) {
-		GameManager gManager = new GameManager(new PlayerManager(), new CardSet());
-
-	
-
+		
 	}
 
 }

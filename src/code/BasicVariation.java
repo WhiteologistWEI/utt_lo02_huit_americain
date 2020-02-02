@@ -2,6 +2,7 @@ package code;
 
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.function.Function;
 
 public class BasicVariation implements Variation {
 	
@@ -18,6 +19,11 @@ public class BasicVariation implements Variation {
 	public void runFunction(Card card) {
 		int cardNum = card.getValeur();
 		
+		if (functMap.containsKey(cardNum)) {
+			CardFunction cardFunct = functMap.get(cardNum);			
+			cardFunct.runFunction();
+		}
+
 	}
 
 }
