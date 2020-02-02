@@ -21,8 +21,20 @@ public class GameManager {
 		sc = new Scanner(System.in);
 	}
 	
+	public void setColor(int newColor) {
+		reference.setCouleur(newColor);
+	}
+	
 	public void toNext() {
 		nowPlayerIndex = (nowPlayerIndex + turn) % playerAmount;
+	}
+	
+	public Player getNowPlayer() {
+		return playerList.getPlayer(nowPlayerIndex);
+	}
+	
+	public Card getReference() {
+		return reference;
 	}
 	
 	public boolean checkCard(Card playedCard, int playerNum) {
@@ -81,8 +93,17 @@ public class GameManager {
 				}
 					
 				//function
-				if (playedCard != null)
-					reference = playedCard;
+				if (playedCard != null) {
+					int color = playedCard.getCouleur();
+					int value = playedCard.getValeur();
+					
+					if (reference == null) {
+						reference = new Card(color, value);
+					} else {
+						reference.setCouleur(color);
+						reference.setValeur(value);
+					}
+				}
 				
 				toNext();		
 			} else {
